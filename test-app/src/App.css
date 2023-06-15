@@ -1,0 +1,19 @@
+.JSONViewer {
+  margin-top: 100px;
+  width: 500px;
+  text-align: left;
+}
+
+.main-container {
+  margin: 0 auto;
+  width: 80vw;
+}
+
+button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+}
