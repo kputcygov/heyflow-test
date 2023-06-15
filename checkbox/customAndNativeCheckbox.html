@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" lang="en">
+<head>
+    <title>Checkbox</title>
+</head>
+<style>
+    #custom-checkmark {
+        border: 0.04em solid black;
+        width: 1em;
+        height: 1em;
+        border-radius: 0.15em;
+    }
+
+    #focused-container {
+        border-radius: 0.15em;
+        width: 1.1em;
+        height: 1.1em;
+        padding: 0.05em;
+    }
+
+    .focused {
+        border: 0.13em solid #015fcc;
+    }
+
+    #custom-checkmark.checked {
+        background-image: url(./checkmark.svg);
+    }
+
+    #custom-check-container {
+        padding: 0.2em;
+        position: absolute
+    }
+
+</style>
+<script type="text/javascript">
+    const onCheck = (isNative) => {
+        const nativeCheckBox = document.getElementById('native-check')
+        const customCheckBox = document.getElementById('custom-checkmark')
+        if (!isNative) {
+            nativeCheckBox.checked = !nativeCheckBox.checked
+        }
+        if (nativeCheckBox.checked) {
+            customCheckBox.classList.add("checked")
+        } else {
+            customCheckBox.classList.remove("checked")
+        }
+    }
+
+    const onFocus = () => {
+        const focusedContainer = document.getElementById('focused-container')
+        focusedContainer.classList.add("focused")
+    }
+
+    const onBlur = () => {
+        const focusedContainer = document.getElementById('focused-container')
+        focusedContainer.classList.remove("focused")
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const nativeCheckBox = document.getElementById('native-check')
+        nativeCheckBox.addEventListener('mousedown', (event) => {
+            event.preventDefault()
+            event.stopPropagation()
+        })
+        nativeCheckBox.addEventListener('keydown', (event) => {
+            if (event.code === '9') {
+                onFocus()
+            }
+        });
+    });
+</script>
+<body>
+<label>
+    <input id="native-check"
+           name="checkbox-checked"
+           onblur="onBlur()"
+           onchange="onCheck(true)"
+           onfocus="onFocus()" type="checkbox"/>
+</label>
+<div>
+    <div id="custom-check-container">
+        <div id="custom-checkmark" onclick="onCheck(false)">
+        </div>
+    </div>
+    <div id="focused-container"></div>
+</div>
+</body>
+</html>

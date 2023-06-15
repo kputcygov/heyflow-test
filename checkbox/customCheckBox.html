@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" lang="en">
+<head>
+    <title>Checkbox</title>
+</head>
+<style>
+input[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: #fff;
+    /* Not removed via appearance */
+    width: 1em;
+    height: 1em;
+    /*border 0.15em solid currentColor;*/
+    border: 0.04em solid black;
+    border-radius: 0.15em;
+    display: grid;
+    place-content: center;:
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+}
+
+input[type="checkbox"]:checked::before {
+    background-image: url(./checkmark.svg);
+}
+
+</style>
+<body>
+<label class="form-control">
+    <input type="checkbox" name="checkbox-checked" checked />
+</label>
+</body>
+</html>
